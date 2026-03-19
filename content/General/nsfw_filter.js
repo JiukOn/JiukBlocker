@@ -25,7 +25,9 @@ function _isContentElement(el) {
 }
 
 function _getVisibleText(el) {
-  return (el.innerText || el.textContent || '').trim().slice(0, 500);
+  const clone = el.cloneNode(true);
+  clone.querySelectorAll('code, pre, script, style, [data-jiuk-ignore]').forEach(n => n.remove());
+  return (clone.innerText || clone.textContent || '').trim().slice(0, 500);
 }
 
 function _processNSFWElement(el, level, patterns) {
