@@ -35,40 +35,34 @@ const NSFW_KEYWORDS_DEFAULT = Object.freeze([
 
   /(?<!\p{L})xxx(?!\p{L})/iu,
 
-  /(?<!\p{L})18\+(?!\p{L})(?!.*game)(?!.*software)(?!.*app)(?!.*rating)(?!.*age\s*verif)(?!.*drink)(?!.*alcohol)(?!.*beer)(?!.*wine)(?!.*club\s*entry)(?!.*event)/iu,
+  /(?<!\p{L})18\+(?!\p{L})(?=.*(nude|naked|porn|onlyfans|cam\s*(girl|boy)|adult\s*(film|video)\b))/iu,
+  /(?<!\p{L})adults only(?!\p{L})(?=.*(nude|naked|porn|onlyfans|cam\s*(girl|boy)|lewd|hentai))/iu,
+  /(?<!\p{L})18 only(?!\p{L})(?=.*(nude|naked|porn|onlyfans|cam\s*(girl|boy)|escort\s*(latina|sexy|vip)))/iu,
+  /(?<!\p{L})age[- ]?restricted(?!\p{L})(?=.*(nude|naked|porn|onlyfans|explicit\s*(video|film)|adult\s*(video|film)\b))/iu,
 
-  /(?<!\p{L})adults only(?!\p{L})(?!.*section)(?!.*content\s*filter)(?!.*policy)/iu,
-  /(?<!\p{L})18 only(?!\p{L})(?!.*policy)(?!.*event)/iu,
+  /(?<!\p{L})adult content(?!\p{L})(?=.*(nude|naked|porn|onlyfans|cam\s*(girl|boy)|lewd|hentai|bdsm|fetish))/iu,
+  /(?<!\p{L})conteúdo\s*(adulto|explícito|18\+|sexual)(?!\p{L})(?=.*(nude|naked|porn|pelad|desnud|onlyfans))/iu,
+  /(?<!\p{L})contenido\s*(adulto|sexual|explícito)(?!\p{L})(?=.*(nude|porn|desnud|onlyfans|cam\s*(girl|boy)))/iu,
+  /(?<!\p{L})contenu\s*(adulte|pour adultes|explicite|sexuel)(?!\p{L})(?=.*(nude|porn|cam\s*(girl|boy)|onlyfans))/iu,
 
-  /(?<!\p{L})age[- ]?restricted(?!\p{L})(?!.*game)(?!.*film)(?!.*movie)(?!.*video)(?!.*content\s*policy)(?!.*youtube)(?!.*platform)/iu,
+  /(?<!\p{L})nsfw(?!\p{L})(?![_\.\-])(?=.*(nude|naked|porn|onlyfans|lewd|hentai|bdsm|fetish|cam\s*(girl|boy)|escort\s*(sexy|vip)|stripper))/iu,
 
-  /(?<!\p{L})adult content(?!\p{L})(?!.*filter)(?!.*block)(?!.*detection)(?!.*moderat)(?!.*policy)(?!.*warn)/iu,
-  /(?<!\p{L})conteúdo\s*(adulto|explícito|18\+|sexual)(?!\p{L})(?!.*filtro)(?!.*bloqueio)(?!.*aviso)/iu,
-  /(?<!\p{L})contenido\s*(adulto|sexual|explícito)(?!\p{L})(?!.*filtro)(?!.*bloqueo)(?!.*aviso)/iu,
-  /(?<!\p{L})contenu\s*(adulte|pour adultes|explicite|sexuel)(?!\p{L})(?!.*filtre)(?!.*blocage)(?!.*avertissement)/iu,
+  /(?<!\p{L})uncensored(?!\p{L})(?=.*(nude|naked|porn|sex\s*tape|cam\s*(girl|boy)|onlyfans|lewd|hentai|bdsm))/iu,
 
-  /(?<!\p{L})nsfw(?![\p{L}_\-\.])(?!.*filter)(?!.*block)(?!.*keywords?)(?!.*rules?)(?!.*extension)(?!.*content\s*script)(?!.*warning\s*system)(?!.*tag)/iu,
-
-  /(?<!\p{L})uncensored(?!\p{L})(?!.*history)(?!.*news)(?!.*truth)(?!.*interview)(?!.*footage)(?!.*version)(?!.*document)(?!.*game)(?!.*review)/iu,
-
-  /(?<!\p{L})explicit(?!\p{L})(?!.*language)(?!.*content warning)(?!.*lyrics)(?!.*warning)(?!.*content\s*filter)(?!.*block)(?!.*moderat)(?!.*detect)(?!.*parental)(?!.*guide)(?!.*instruction)/iu,
+  /(?<!\p{L})explicit(?!\p{L})(?=.*(nude|naked|porn|sex\s*video|sex\s*tape|adult\s*(film|video)|lewd|hentai|onlyfans|bdsm|cam\s*(girl|boy)|fetish|erotic\s*(video|photo|film)|escort\s*(sexy|vip)|stripper))/iu,
 
   /(?<!\p{L})vidéo\s*x(?!\p{L})/iu,
   /(?<!\p{L})film\s*x(?!\p{L})/iu,
   /(?<!\p{L})site\s*x(?!\p{L})/iu,
 
-  /(?<!\p{L})nud(ity|ist|ism)(?!\p{L})(?!.*art)(?!.*beach\s*resort)(?!.*colony\s*resort)(?!.*museum)(?!.*film\s*festival)(?!.*history)(?!.*study)(?!.*classic)/iu,
-  /(?<!\p{L})nude(s)?(?!\p{L})(?!.*art)(?!.*painting)(?!.*sculpture)(?!.*model\s*for\s*art)(?!.*photograph(y|er))(?!.*study)(?!.*class\b)/iu,
-
-  /(?<!\p{L})naked(?!\p{L})(?!.*eye)(?!.*truth)(?!.*mole\s*rat)(?!.*singularity)(?!.*fact)(?!.*lunch)(?!.*city)(?!.*flame)(?!.*chef)/iu,
-
-  /(?<!\p{L})topless(?!\p{L})(?!.*tower)(?!.*meeting)(?!.*jeep)(?!.*bar\s*graph)/iu,
-
+  /(?<!\p{L})nud(ity|ist|ism)(?!\p{L})(?!.*art\s*class)(?!.*art\s*history)(?!.*museum)(?!.*fig\s*drawing)(?!.*sculpture\s*class)(?!.*beach\s*resort)(?!.*colony\s*resort)/iu,
+  /(?<!\p{L})nude(s)?(?!\p{L})(?!.*art\s*class)(?!.*model\s*for\s*art)(?!.*figure\s*study)(?!.*painting\s*class)(?!.*sculpture\s*studio)/iu,
+  /(?<!\p{L})naked(?!\p{L})(?!.*eye)(?!.*truth)(?!.*mole\s*rat)(?!.*singularity)(?!.*fact)(?!.*lunch)(?!.*city\s*of)(?!.*chef\b)/iu,
+  /(?<!\p{L})topless(?!\p{L})(?!.*tower)(?!.*bar\s*graph)(?!.*chart)/iu,
   /(?<!\p{L})bottomless(?!\p{L})(?!.*pit)(?!.*brunch)(?!.*cup)(?!.*glass)(?!.*bowl)(?!.*bag)(?!.*coffee)(?!.*refill)/iu,
-
   /(?<!\p{L})bare(ly)?naked(?!\p{L})/iu,
   /(?<!\p{L})pelad(a|o)(?!\p{L})(?!.*futebol)(?!.*bola)(?!.*jogo)(?!.*campo)(?!.*pelada\s*de)/iu,
-  /(?<!\p{L})desnud(o|a|ez)(?!\p{L})(?!.*artístico)(?!.*arte)(?!.*pintura)(?!.*escultura)(?!.*fotografia\s*artística)/iu,
+  /(?<!\p{L})desnud(o|a|ez)(?!\p{L})(?!.*artístico)(?!.*arte\s)(?!.*pintura)(?!.*escultura)(?!.*fotografia\s*artística)/iu,
   /(?<!\p{L})dénudé(e)?(?!\p{L})/iu,
   /(?<!\p{L})nu(e|dité|disme|diste)?(?!\p{L})(?!.*artistique)(?!.*à nu\b)(?!.*mise à)(?!.*art\b)(?!.*musée)(?!.*peinture)/iu,
   /(?<!\p{L})seins\s*nus(?!\p{L})/iu,
@@ -76,9 +70,9 @@ const NSFW_KEYWORDS_DEFAULT = Object.freeze([
   /(?<!\p{L})sin\s*ropa(?!\p{L})(?!.*deportiva)(?!.*interior)(?!.*de trabajo)/iu,
   /(?<!\p{L})desnuda\s*completamente(?!\p{L})/iu,
 
-  /(?<!\p{L})s[e3]x(?!\p{L})(?!.*education)(?!.*health)(?!.*offend)(?!.*assault)(?!.*abuse)(?!.*therapy)(?!.*ed\b)(?!.*ed\s)(?!.*chromosome)(?!.*drive)(?!.*ratio)(?!.*determination)/iu,
+  /(?<!\p{L})s[e3]x(?!\p{L})(?!.*education)(?!.*health)(?!.*offend)(?!.*assault)(?!.*abuse)(?!.*therapy)(?!.*ed\b)(?!.*chromosome)(?!.*drive)(?!.*ratio)(?!.*determination)/iu,
 
-  /(?<!\p{L})sexy(?!\p{L})(?=.*(nude|naked|porn|nsfw|onlyfans|explicit|lewd|erotic|lingerie|topless))/iu,
+  /(?<!\p{L})sexy(?!\p{L})(?=.*(nude|naked|porn|nsfw|onlyfans|explicit\s*(video|photo|film)|lewd|erotic\s*(video|film)|cam\s*(girl|boy)|bdsm|stripper|escort\s*(vip|sexy|latina)))/iu,
 
   /(?<!\p{L})sexual(?!\p{L})(?!.*education)(?!.*health)(?!.*assault)(?!.*abuse)(?!.*harassment)(?!.*therapy)(?!.*orientation)(?!.*identity)(?!.*reproduction)(?!.*biology)(?!.*dimorphism)(?!.*selection)/iu,
 
@@ -104,21 +98,17 @@ const NSFW_KEYWORDS_DEFAULT = Object.freeze([
   /(?<!\p{L})libertinage(?!\p{L})/iu,
   /(?<!\p{L})libertin(e)?(?!\p{L})(?!.*philosophy)(?!.*enlightenment)(?!.*thought)(?!.*age)/iu,
 
-  /(?<!\p{L})erot(ic|ica|ism)(?!\p{L})(?!.*art\b)(?!.*literature)(?!.*fiction)(?!.*novel)(?!.*poetry)(?!.*film\s*festival)(?!.*classic)(?!.*painting)(?!.*photography\s*art)/iu,
+  /(?<!\p{L})erot(ic|ica|ism)(?!\p{L})(?=.*(nude|naked|porn|video|film|photo|cam\s*(girl|boy)|onlyfans|lewd|bdsm))/iu,
 
   /(?<!\p{L})lewd(?!\p{L})/iu,
   /(?<!\p{L})lascivious(?!\p{L})/iu,
   /(?<!\p{L})salacious(?!\p{L})/iu,
-
-  /(?<!\p{L})naughty(?!\p{L})(?!.*dog)(?!.*puppy)(?!.*kid)(?!.*child)(?!.*list)(?!.*elf)(?!.*america)(?!.*or\s*nice)(?!.*step)(?!.*santa)/iu,
-
+  /(?<!\p{L})naughty(?!\p{L})(?!.*dog)(?!.*puppy)(?!.*kid)(?!.*child)(?!.*list)(?!.*elf)(?!.*america)(?!.*or\s*nice)(?!.*santa)/iu,
   /(?<!\p{L})slutty(?!\p{L})(?!.*costume\s*guide)(?!.*halloween\s*costume)(?!.*fashion\s*guide)/iu,
-
   /(?<!\p{L})horny(?!\p{L})(?!.*toad)(?!.*owl)(?!.*lizard)(?!.*bird)(?!.*animal)(?!.*cattle)(?!.*goat)(?!.*rhinoceros)/iu,
-
   /(?<!\p{L})busty(?!\p{L})/iu,
-  /(?<!\p{L})voluptuous(?!\p{L})(?!.*figure\s*in\s*art)(?!.*renaissance)(?!.*baroque)/iu,
-  /(?<!\p{L})morboso(?!\p{L})(?!.*curious)(?!.*curiosidad)(?!.*morbo\s*sano)/iu,
+  /(?<!\p{L})voluptuous(?!\p{L})(?!.*renaissance)(?!.*baroque)(?!.*figure\s*in\s*art)/iu,
+  /(?<!\p{L})morboso(?!\p{L})(?!.*curiosidad)(?!.*curioso)/iu,
   /(?<!\p{L})cachond(o|a)(?!\p{L})(?!.*calor)(?!.*temperatura)/iu,
   /(?<!\p{L})tesan(?!\p{L})(?!.*carro)(?!.*música)(?!.*trabalho)(?!.*projeto)(?!.*livro)(?!.*motor)/iu,
   /(?<!\p{L})tarad(o|a)(?!\p{L})(?!.*futebol)(?!.*tecnologia)(?!.*jogo)(?!.*game)(?!.*carro)(?!.*série)/iu,
@@ -127,18 +117,15 @@ const NSFW_KEYWORDS_DEFAULT = Object.freeze([
   /(?<!\p{L})salope(?!\p{L})/iu,
   /(?<!\p{L})cochon(ne)?(?!\p{L})(?!.*d'Inde)(?!.*Inde\b)(?!.*ferme)(?!.*élevage)(?!.*animal)/iu,
   /(?<!\p{L})plan\s*cul(?!\p{L})/iu,
-
-  /(?<!\p{L})exhibitionist(?!\p{L})(?!.*tendenc)(?!.*disorder)(?!.*psychology)(?!.*therapy)(?!.*art\b)(?!.*perform)/iu,
-
-  /(?<!\p{L})voyeur(ism|iste)?(?!\p{L})(?!.*photography\s*art)(?!.*candid\s*art)(?!.*cinema\s*technique)/iu,
-
-  /(?<!\p{L})wank(?!\p{L})(?!.*wankel)(?!.*bank)(?!.*sl-wank)(?!.*wankle)/iu,
+  /(?<!\p{L})exhibitionist(?!\p{L})(?!.*disorder)(?!.*psychology)(?!.*therapy\s*for)/iu,
+  /(?<!\p{L})voyeur(ism|iste)?(?!\p{L})(?!.*photography\s*art)(?!.*cinema\s*technique)(?!.*academic)/iu,
+  /(?<!\p{L})wank(?!\p{L})(?!.*wankel)(?!.*bank)(?!.*wankle)/iu,
 
   /(?<!\p{L})masturbat(e|ion|ing|ed)(?!\p{L})/iu,
   /(?<!\p{L})punhet(a|eiro|ando)(?!\p{L})/iu,
   /(?<!\p{L})paj(ear|eo|ero)(?!\p{L})(?!.*mitsubishi)(?!.*carro)(?!.*auto)(?!.*4x4)(?!.*pajero\b)/iu,
   /(?<!\p{L})branl(er|ette|eur)(?!\p{L})/iu,
-  /(?<!\p{L})orgasm(?!\p{L})(?!.*disorder)(?!.*dysfunction)(?!.*therapy)(?!.*simulat)/iu,
+  /(?<!\p{L})orgasm(?!\p{L})(?!.*disorder)(?!.*dysfunction)(?!.*therapy)/iu,
   /(?<!\p{L})gozad(a|o)(?!\p{L})/iu,
   /(?<!\p{L})éjaculat(ion|er)(?!\p{L})/iu,
   /(?<!\p{L})blowjob(?!\p{L})/iu,
@@ -153,12 +140,12 @@ const NSFW_KEYWORDS_DEFAULT = Object.freeze([
   /(?<!\p{L})footjob(?!\p{L})/iu,
   /(?<!\p{L})rimjob(?!\p{L})/iu,
   /(?<!\p{L})cumshot(?!\p{L})/iu,
-  /(?<!\p{L})creampie(?!\p{L})(?!.*recipe)(?!.*dessert)(?!.*pastry)(?!.*pie\s*recipe)(?!.*bakery)/iu,
+  /(?<!\p{L})creampie(?!\p{L})(?!.*recipe)(?!.*dessert)(?!.*pastry)(?!.*bakery)/iu,
   /(?<!\p{L})gangbang(?!\p{L})/iu,
   /(?<!\p{L})threesome(?!\p{L})/iu,
   /(?<!\p{L})threeway(?!\p{L})/iu,
   /(?<!\p{L})foursome(?!\p{L})(?!.*golf)(?!.*music\s*group)/iu,
-  /(?<!\p{L})facial(?!\p{L})(?!.*hair)(?!.*cream)(?!.*cleanser)(?!.*wash)(?!.*mask)(?!.*treatment)(?!.*recognition)(?!.*surgery)(?!.*feature)(?!.*analysis)(?!.*motion)(?!.*expression)/iu,
+  /(?<!\p{L})facial(?!\p{L})(?!.*hair)(?!.*cream)(?!.*cleanser)(?!.*wash)(?!.*mask)(?!.*treatment)(?!.*recognition)(?!.*surgery)(?!.*feature)(?!.*analysis)(?!.*expression)/iu,
   /(?<!\p{L})squirt(?!\p{L})(?!.*bottle)(?!.*gun)(?!.*water)(?!.*juice)(?!.*plant)(?!.*flower)(?!.*brand)(?!.*drink)(?!.*soda)/iu,
   /(?<!\p{L})dick\s*pic(s)?(?!\p{L})/iu,
   /(?<!\p{L})chingar(?!\p{L})(?=\s*(bien|mal|fuerte|duro|todo|se\s))/iu,
@@ -177,29 +164,29 @@ const NSFW_KEYWORDS_DEFAULT = Object.freeze([
   /(?<!\p{L})xoxota(?!\p{L})/iu,
   /(?<!\p{L})xereca(?!\p{L})/iu,
   /(?<!\p{L})coño(?!\p{L})/iu,
-  /(?<!\p{L})chatte(?!\p{L})(?!.*chaton)(?!.*petit(e)?\s*chatte)(?!.*ma\s*chatte\s*\w)/iu,
+  /(?<!\p{L})chatte(?!\p{L})(?!.*chaton)(?!.*petite\s*chatte)(?!.*ma\s*chatte\s*\w)/iu,
   /(?<!\p{L})piroca(?!\p{L})/iu,
   /(?<!\p{L})pinto(?!\p{L})(?!.*bird)(?!.*feather)(?!.*Pinto\s[A-Z])(?!.*feijão)(?!.*cor)(?!.*tinta)/iu,
   /(?<!\p{L})pau(?!\p{L})(?=\s*(duro|grande|gostoso|grosso|dentro|fora|na boca|no cu|comprido))/iu,
   /(?<!\p{L})verga(?!\p{L})(?!.*de\s*(toro|maçã|madeira|aço|ferro))/iu,
   /(?<!\p{L})polla(?!\p{L})/iu,
-  /(?<!\p{L})pene(?!\p{L})(?!.*penetración\s*de mercado)(?!.*muscular)(?!.*pene\s*[a-z]{6,})/iu,
+  /(?<!\p{L})pene(?!\p{L})(?!.*penetración\s*de mercado)(?!.*muscular)/iu,
   /(?<!\p{L})bite(?!\p{L})(?=\s*(grosse|dure|dans|au|le\s+cul|de\s+chien))/iu,
-  /(?<!\p{L})bund(a|ão|inha)(?!\p{L})(?!.*mole\b)(?!.*covarde)(?!.*bundão\s+de)/iu,
+  /(?<!\p{L})bund(a|ão|inha)(?!\p{L})(?!.*mole\b)(?!.*covarde)/iu,
   /(?<!\p{L})cu(?!\p{L})(?=\s*(gozado|peludo|grande|apertado|fedorento|molhado))/iu,
-  /(?<!\p{L})culo(?!\p{L})(?!.*músculo)(?!.*Hércules)(?!.*culos\s+de\s+botella)/iu,
+  /(?<!\p{L})culo(?!\p{L})(?!.*músculo)(?!.*Hércules)/iu,
   /(?<!\p{L})culona(?!\p{L})/iu,
   /(?<!\p{L})nalgona(?!\p{L})/iu,
-  /(?<!\p{L})tetas?(?!\p{L})(?!.*bebé)(?!.*baby)(?!.*leche)(?!.*lactancia)(?!.*tetada)/iu,
+  /(?<!\p{L})tetas?(?!\p{L})(?!.*bebé)(?!.*baby)(?!.*leche)(?!.*lactancia)/iu,
   /(?<!\p{L})tetona(?!\p{L})/iu,
   /(?<!\p{L})téton(s)?(?!\p{L})/iu,
   /(?<!\p{L})pezones?(?!\p{L})/iu,
   /(?<!\p{L})zorr(a|o)(?!\p{L})(?!.*animal)(?!.*zorro\s*(the|show|serie|fox))/iu,
   /(?<!\p{L})clito(?!\p{L})/iu,
 
-  /(?<!\p{L})fetish(?!\p{L})(?!.*object\s*in\s*anthropology)(?!.*cultural\s*anthropology)(?!.*study)/iu,
+  /(?<!\p{L})fetish(?!\p{L})(?!.*cultural\s*anthropology)(?!.*anthropological\s*study)/iu,
   /(?<!\p{L})bdsm(?!\p{L})/iu,
-  /(?<!\p{L})bondage(?!\p{L})(?!.*paper)(?!.*issue)(?!.*tape\s*art)(?!.*debt)(?!.*financial)(?!.*economic)/iu,
+  /(?<!\p{L})bondage(?!\p{L})(?!.*paper)(?!.*tape\s*art)(?!.*debt)(?!.*financial)(?!.*economic)/iu,
   /(?<!\p{L})dominatrix(?!\p{L})/iu,
   /(?<!\p{L})dominatrice(?!\p{L})/iu,
   /(?<!\p{L})sadomasoch(ism|ist)(?!\p{L})/iu,
@@ -220,9 +207,8 @@ const NSFW_KEYWORDS_DEFAULT = Object.freeze([
   /(?<!\p{L})consolador(?!\p{L})(?!.*palabras)(?!.*mensaje)(?!.*voz)(?!.*pensamiento)/iu,
 
   /(?<!\p{L})stripper(?!\p{L})(?!.*paint)(?!.*wallpaper)(?!.*wire)(?!.*cable)(?!.*log)(?!.*tool)(?!.*insulation)(?!.*electrical)(?!.*bark)/iu,
-
   /(?<!\p{L})striptease(?!\p{L})/iu,
-  /(?<!\p{L})escort(?!\p{L})(?!.*vehicle)(?!.*military)(?!.*service\s*car)(?!.*fighter)(?!.*jet)(?!.*police)(?!.*carrier)(?!.*fleet)(?!.*agency\s*protect)/iu,
+  /(?<!\p{L})escort(?!\p{L})(?!.*vehicle)(?!.*military)(?!.*service\s*car)(?!.*fighter)(?!.*jet)(?!.*police)(?!.*carrier)(?!.*fleet)/iu,
   /(?<!\p{L})escorte(?!\p{L})(?!.*policière)(?!.*militaire)(?!.*armée)(?!.*garde)(?!.*sous)/iu,
   /(?<!\p{L})prostitut(e|ion|ed)(?!\p{L})/iu,
   /(?<!\p{L})prostituée(?!\p{L})/iu,
@@ -231,7 +217,7 @@ const NSFW_KEYWORDS_DEFAULT = Object.freeze([
   /(?<!\p{L})camboy(?!\p{L})/iu,
   /(?<!\p{L})sugar daddy(?!\p{L})/iu,
   /(?<!\p{L})sugar momm(y|a)(?!\p{L})/iu,
-  /(?<!\p{L})sex work(er)?(?!\p{L})(?!.*law)(?!.*policy)(?!.*decriminal)(?!.*rights)(?!.*reform)(?!.*study)(?!.*research)/iu,
+  /(?<!\p{L})sex work(er)?(?!\p{L})(?!.*law)(?!.*policy)(?!.*decriminal)(?!.*rights)(?!.*reform)(?!.*research)/iu,
   /(?<!\p{L})onlyfans?\s*model(?!\p{L})/iu,
   /(?<!\p{L})michê(?!\p{L})/iu,
   /(?<!\p{L})puteiro(?!\p{L})/iu,
@@ -274,15 +260,10 @@ const NSFW_KEYWORDS_DEFAULT = Object.freeze([
   /(?<!\p{L})nukige(?!\p{L})/iu,
   /(?<!\p{L})ero\s*(manga|anime|game|doujin)(?!\p{L})/iu,
   /(?<!\p{L})ahegao(?!\p{L})/iu,
-
   /(?<!\p{L})doujin(shi)?(?!\p{L})(?=.*(porn|hentai|nsfw|nude|naked|lewd|explicit|erotic|adult|18\+))/iu,
-
   /(?<!\p{L})futanari(?!\p{L})/iu,
-
-  /(?<!\p{L})oppai(?!\p{L})(?=.*(hentai|nude|naked|lewd|nsfw|explicit|erotic|ecchi))/iu,
-
-  /(?<!\p{L})oshiri(?!\p{L})(?=.*(hentai|nude|naked|lewd|nsfw|explicit|erotic|ecchi))/iu,
-
+  /(?<!\p{L})oppai(?!\p{L})(?=.*(hentai|nude|naked|lewd|nsfw|explicit|ecchi))/iu,
+  /(?<!\p{L})oshiri(?!\p{L})(?=.*(hentai|nude|naked|lewd|nsfw|explicit|ecchi))/iu,
   /(?<!\p{L})sukebe(?!\p{L})/iu,
   /(?<!\p{L})pantsu(?!\p{L})(?!.*fashion)(?!.*clothing)(?!.*brand)(?!.*store)/iu,
   /(?<!\p{L})tentacle\s*(porn|hentai|sex)(?!\p{L})/iu,
