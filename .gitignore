@@ -1,0 +1,6 @@
+_metadata
+node_modules
+.env
+.venv
+venv
+package-lock.json
