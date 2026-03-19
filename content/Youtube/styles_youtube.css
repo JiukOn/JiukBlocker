@@ -1,0 +1,50 @@
+body[data-jiuk-shorts-blocked="true"] ytd-rich-shelf-renderer[is-shorts],
+body[data-jiuk-shorts-blocked="true"] ytd-reel-shelf-renderer,
+body[data-jiuk-shorts-blocked="true"] ytd-search ytd-reel-shelf-renderer,
+body[data-jiuk-shorts-blocked="true"] grid-shelf-view-model:has(a[href^="/shorts/"]),
+body[data-jiuk-shorts-blocked="true"] ytm-shorts-lockup-view-model-v2,
+body[data-jiuk-shorts-blocked="true"] ytm-shorts-lockup-view-model {
+  display: none !important;
+}
+
+body[data-jiuk-shorts-blocked="true"] ytd-rich-item-renderer:has(a[href^="/shorts/"]),
+body[data-jiuk-shorts-blocked="true"] ytd-video-renderer:has(a[href^="/shorts/"]),
+body[data-jiuk-shorts-blocked="true"] ytd-compact-video-renderer:has(a[href^="/shorts/"]),
+body[data-jiuk-shorts-blocked="true"] ytd-grid-video-renderer:has(a[href^="/shorts/"]),
+body[data-jiuk-shorts-blocked="true"] ytd-search ytd-video-renderer:has(a[href^="/shorts/"]) {
+  display: none !important;
+}
+
+body[data-jiuk-shorts-blocked="true"] ytd-rich-item-renderer:has([overlay-style="SHORTS"]),
+body[data-jiuk-shorts-blocked="true"] ytd-video-renderer:has([overlay-style="SHORTS"]),
+body[data-jiuk-shorts-blocked="true"] ytd-compact-video-renderer:has([overlay-style="SHORTS"]),
+body[data-jiuk-shorts-blocked="true"] ytd-grid-video-renderer:has([overlay-style="SHORTS"]),
+body[data-jiuk-shorts-blocked="true"] ytd-search ytd-video-renderer:has([overlay-style="SHORTS"]) {
+  display: none !important;
+}
+
+body[data-jiuk-shorts-blocked="true"] ytd-guide-entry-renderer:has(a[title="Shorts"]),
+body[data-jiuk-shorts-blocked="true"] ytd-mini-guide-entry-renderer:has(a[title="Shorts"]) {
+  display: none !important;
+}
+
+/* ── NSFW Strict Mode: blur thumbnail, safe for YouTube Virtual Scrolling ── */
+.jiuk-nsfw {
+  position: relative;
+  pointer-events: none;
+}
+
+.jiuk-nsfw::after {
+  content: '🔞';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 10;
+  border-radius: inherit;
+}

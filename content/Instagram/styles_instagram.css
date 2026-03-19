@@ -1,0 +1,24 @@
+body[data-jiuk-shorts-blocked="true"] a[href*="/reels/"],
+body[data-jiuk-shorts-blocked="true"] a[href*="/reel/"] {
+  display: none !important;
+}
+
+.jiuk-nsfw {
+  position: relative;
+  pointer-events: none;
+}
+
+.jiuk-nsfw::after {
+  content: '🔞';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  border-radius: inherit;
+}

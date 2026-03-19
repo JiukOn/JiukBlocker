@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JiukBlocker - Settings</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <h1>JiukBlocker</h1>
+
+  <div class="toggle-container">
+    <span class="toggle-label">Block Ads & Spam</span>
+    <label class="switch">
+      <input type="checkbox" id="ads-spam-toggle">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="toggle-container">
+    <span class="toggle-label">Block NSFW Content</span>
+    <label class="switch">
+      <input type="checkbox" id="nsfw-toggle">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="nsfw-level-row" id="nsfw-level-row">
+    <span class="toggle-label">NSFW Level</span>
+    <select id="nsfw-level-select">
+      <option value="moderate">Moderate (hide)</option>
+      <option value="strict">Strict (blur)</option>
+    </select>
+  </div>
+
+  <div class="toggle-container">
+    <span class="toggle-label">Block Short Videos</span>
+    <label class="switch">
+      <input type="checkbox" id="shorts-toggle">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <h2>Keyword Filter</h2>
+  <div class="input-container">
+    <input type="text" id="keyword-input" placeholder="Block word, channel, or /regex/..." autocomplete="off" spellcheck="false">
+    <button id="add-btn">Add</button>
+  </div>
+  <ul id="keyword-list"></ul>
+
+  <a href="https://ko-fi.com/jiuk" target="_blank" class="kofi-btn">☕ Support the Project</a>
+  <script src="popup.js"></script>
+</body>
+</html>
