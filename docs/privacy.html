@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Como Contribuir - JiukBlocker</title>
+    <title>Privacidade - JiukBlocker</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -24,7 +24,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="contributing.html" class="nav-link active">
+                <a href="contributing.html" class="nav-link">
                     <i data-lucide="git-pull-request"></i>
                     <span>Como Contribuir</span>
                 </a>
@@ -42,7 +42,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="privacy.html" class="nav-link">
+                <a href="privacy.html" class="nav-link active">
                     <i data-lucide="shield"></i>
                     <span>Privacidade</span>
                 </a>
@@ -55,48 +55,40 @@
 
     <main class="main">
         <header class="header">
-            <h1>Guia de Contribuição</h1>
-            <p>Ajude-nos a tornar o JiukBlocker ainda mais inteligente e eficiente.</p>
+            <h1>Política de Privacidade</h1>
+            <p>Sua privacidade é nossa prioridade absoluta.</p>
         </header>
 
         <section class="content">
             <div class="card">
-                <h2><i data-lucide="help-circle"></i> Onde Começar?</h2>
-                <p>Seja você um desenvolvedor experiente ou alguém querendo apenas sugerir uma nova regra de bloqueio, seguir este guia facilita o processo.</p>
+                <h2><i data-lucide="eye-off"></i> Transparência Total</h2>
+                <p>O <strong>JiukBlocker</strong> é uma extensão aberta e transparente, projetada estritamente para melhorar sua experiência de navegação ao bloquear anúncios e distrações visuais. Respeitamos profundamente sua privacidade.</p>
+            </div>
+
+            <div class="card">
+                <h2><i data-lucide="database-zap"></i> 1. Coleta de Dados</h2>
+                <p>Nós <strong>não coletamos, armazenamos, transmitimos ou vendemos</strong> quaisquer dados pessoais, histórico de navegação na web ou atividade do usuário. O projeto é auditável e focado em privacidade.</p>
+                <div class="alert alert-info">
+                    <i data-lucide="check-circle"></i>
+                    <span>Nenhum dado sai da sua máquina.</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2><i data-lucide="hard-drive"></i> 2. Armazenamento Local</h2>
+                <p>Todas as suas preferências (como palavras-chave bloqueadas e estados de alternância para anúncios, spam e shorts) são salvas localmente no seu dispositivo usando a API nativa <code>chrome.storage.sync</code> do Google Chrome.</p>
                 <ul>
-                    <li><strong>Dicionário de Filtros:</strong> Adicione novas palavras-chave de gatilho.</li>
-                    <li><strong>Suporte a Plataformas:</strong> Melhore o bloqueio em redes sociais específicas.</li>
-                    <li><strong>Interface:</strong> Melhore o menu da extensão e a UX.</li>
+                    <li>Os desenvolvedores não têm **absolutamente nenhum acesso** a esses dados.</li>
+                    <li>Suas configurações permanecem sob seu controle total.</li>
                 </ul>
             </div>
 
             <div class="card">
-                <h2><i data-lucide="terminal"></i> Passos Técnicos</h2>
-                <ol>
-                    <li>Faça um <strong>Fork</strong> do repositório no GitHub.</li>
-                    <li>Crie uma branch para sua funcionalidade: <code>git checkout -b feature/NovaFuncionalidade</code>.</li>
-                    <li>Implemente suas mudanças seguindo os padrões de código do projeto.</li>
-                    <li>Envie um <strong>Pull Request</strong> detalhando o que foi alterado.</li>
-                </ol>
-            </div>
-
-            <div class="card">
-                <h2><i data-lucide="code-2"></i> Adicionando um Novo Filtro</h2>
-                <p>Para adicionar um novo termo ao dicionário NSFW global:</p>
+                <h2><i data-lucide="key"></i> 3. Justificativa de Permissões</h2>
+                <p>A extensão requer acesso às páginas da web (<code>&lt;all_urls&gt;</code>) estritamente para realizar modificações locais e imediatas no layout do site (DOM) para ocultar elementos intrusivos e anúncios.</p>
                 <ul>
-                    <li>Abra o arquivo <code>content/General/nsfw_keywords.js</code>.</li>
-                    <li>Adicione seu termo ao array exportado.</li>
-                    <li>Todas as integrações da extensão ganharão acesso a essa atualização instantaneamente!</li>
-                </ul>
-            </div>
-
-            <div class="card">
-                <h2><i data-lucide="layout"></i> Expansão de Redes Sociais</h2>
-                <p>Quer adicionar suporte nativo a um novo site (ex: Pinterest)?</p>
-                <ul>
-                    <li>Crie um diretório em <code>content/Pinterest/</code>.</li>
-                    <li>Adicione a lógica em <code>content_pinterest.js</code> e os estilos em <code>styles_pinterest.css</code>.</li>
-                    <li>Registre o novo padrão de URL no <code>manifest.json</code>.</li>
+                    <li>Todo o processamento acontece inteiramente dentro do seu navegador.</li>
+                    <li>O código é de código aberto para que qualquer pessoa possa verificar essas alegações.</li>
                 </ul>
             </div>
         </section>
