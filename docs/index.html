@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JiukBlocker - Documentação</title>
+    <title>JiukBlocker - Documentation</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -20,31 +20,31 @@
             <li class="nav-item">
                 <a href="index.html" class="nav-link active">
                     <i data-lucide="home"></i>
-                    <span>Início</span>
+                    <span>Home</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="contributing.html" class="nav-link">
                     <i data-lucide="git-pull-request"></i>
-                    <span>Como Contribuir</span>
+                    <span>Contributing</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="support.html" class="nav-link">
                     <i data-lucide="heart"></i>
-                    <span>Apoiar Projeto</span>
+                    <span>Support</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="license.html" class="nav-link">
                     <i data-lucide="file-text"></i>
-                    <span>Licença de Uso</span>
+                    <span>License</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="privacy.html" class="nav-link">
                     <i data-lucide="shield"></i>
-                    <span>Privacidade</span>
+                    <span>Privacy</span>
                 </a>
             </li>
         </ul>
@@ -55,46 +55,46 @@
 
     <main class="main">
         <header class="header">
-            <h1>Bem-vindo ao JiukBlocker</h1>
-            <p>A extensão definitiva para uma navegação limpa, segura e ultra-veloz.</p>
+            <h1>Welcome to JiukBlocker</h1>
+            <p>The ultimate browser extension for a clean, safe, and ultra-fast browsing experience.</p>
         </header>
 
         <section class="content">
             <div class="card">
-                <h2><i data-lucide="zap"></i> O que é o JiukBlocker?</h2>
-                <p>O <strong>JiukBlocker</strong> é uma extensão de navegador poderosa e altamente otimizada para o ecossistema Chromium, focada na filtragem contínua de conteúdos indesejados. Ele combina bloqueio de anúncios robusto com filtragem inteligente de conteúdo explícito (NSFW) usando análise dinâmica de DOM e um dicionário centralizado de heurísticas.</p>
+                <h2><i data-lucide="zap"></i> What is JiukBlocker?</h2>
+                <p><strong>JiukBlocker</strong> is a powerful and highly optimized browser extension for the Chromium ecosystem, focused on seamlessly filtering out unwanted content. It combines robust adblocking with intelligent explicit content (NSFW) filtering using dynamic DOM analysis and a centralized dictionary of heuristics.</p>
                 <div class="alert alert-info">
                     <i data-lucide="info"></i>
-                    <span>Foco em controle de conteúdo leve e cirurgicamente preciso, garantindo uma experiência de navegação discreta sem sacrificar o desempenho.</span>
+                    <span>Focus on surgically precise and lightweight content control, ensuring an unobtrusive browsing experience without sacrificing performance.</span>
                 </div>
             </div>
 
             <div class="card">
-                <h2><i data-lucide="layers"></i> Como Funciona?</h2>
-                <p>Nossa mágica reside na combinação de interceptação passiva de rede e varredura visual reativa:</p>
+                <h2><i data-lucide="layers"></i> How it Works?</h2>
+                <p>Our magic lies in combining both passive network interception and reactive visual scanning:</p>
                 <ul>
-                    <li><strong>Bloqueio de Rede Preventivo:</strong> Utiliza a API <code>declarativeNetRequest</code> para bloquear anúncios e rastreadores antes mesmo do carregamento.</li>
-                    <li><strong>Injeção Inteligente:</strong> Scripts específicos para plataformas como YouTube, Instagram, X (Twitter), TikTok e Reddit.</li>
-                    <li><strong>Escaneamento de DOM Otimizado:</strong> Monitoramento via <code>MutationObserver</code> para detectar novos conteúdos dinâmicos instantaneamente.</li>
-                    <li><strong>Ação Visual:</strong> Aplicação de filtros CSS como <code>backdrop-filter: blur</code> ou <code>display: none</code> em tempo real.</li>
+                    <li><strong>Preventive Network Blocking:</strong> Utilizes the <code>declarativeNetRequest</code> API to block ads and trackers before they even load.</li>
+                    <li><strong>Intelligent Injection:</strong> Platform-specific scripts for sites like YouTube, Instagram, X (Twitter), TikTok, and Reddit.</li>
+                    <li><strong>Optimized DOM Scanning:</strong> Monitoring via <code>MutationObserver</code> to detect and process new dynamic content instantly.</li>
+                    <li><strong>Visual Action:</strong> Real-time application of CSS filters like <code>backdrop-filter: blur</code> or <code>display: none</code>.</li>
                 </ul>
             </div>
 
             <div class="card">
-                <h2><i data-lucide="layout"></i> Estrutura do Projeto</h2>
-                <p>O design é estritamente modular, facilitando a escalabilidade e manutenção:</p>
+                <h2><i data-lucide="layout"></i> Project Structure</h2>
+                <p>The design is strictly modular, facilitating easy scalability and maintenance:</p>
                 <ul>
-                    <li><code>/rules</code>: Regras de rede para anúncios e NSFW.</li>
-                    <li><code>/content</code>: Lógica de front-end para filtragem em sites específicos.</li>
-                    <li><code>/popup</code>: Interface do usuário moderna para controle total.</li>
-                    <li><code>/background</code>: O cérebro que gerencia estados e regras dinâmicas.</li>
+                    <li><code>/rules</code>: Network rules for ads and NSFW content.</li>
+                    <li><code>/content</code>: Frontend logic for site-specific filtering.</li>
+                    <li><code>/popup</code>: Modern UI for total user control.</li>
+                    <li><code>/background</code>: The central engine managing states and dynamic rules.</li>
                 </ul>
             </div>
         </section>
 
         <div style="display: flex; gap: 1rem; margin-top: 2rem;">
             <a href="contributing.html" class="btn btn-primary">
-                Começar a Contribuir <i data-lucide="arrow-right"></i>
+                Start Contributing <i data-lucide="arrow-right"></i>
             </a>
             <a href="https://github.com/JiukOn/JiukBlocker" class="btn" style="border: 1px solid var(--border-color);">
                 GitHub <i data-lucide="github"></i>

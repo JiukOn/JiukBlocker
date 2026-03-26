@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Como Contribuir - JiukBlocker</title>
+    <title>Contributing - JiukBlocker</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -20,31 +20,31 @@
             <li class="nav-item">
                 <a href="index.html" class="nav-link">
                     <i data-lucide="home"></i>
-                    <span>Início</span>
+                    <span>Home</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="contributing.html" class="nav-link active">
                     <i data-lucide="git-pull-request"></i>
-                    <span>Como Contribuir</span>
+                    <span>Contributing</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="support.html" class="nav-link">
                     <i data-lucide="heart"></i>
-                    <span>Apoiar Projeto</span>
+                    <span>Support</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="license.html" class="nav-link">
                     <i data-lucide="file-text"></i>
-                    <span>Licença de Uso</span>
+                    <span>License</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="privacy.html" class="nav-link">
                     <i data-lucide="shield"></i>
-                    <span>Privacidade</span>
+                    <span>Privacy</span>
                 </a>
             </li>
         </ul>
@@ -55,48 +55,48 @@
 
     <main class="main">
         <header class="header">
-            <h1>Guia de Contribuição</h1>
-            <p>Ajude-nos a tornar o JiukBlocker ainda mais inteligente e eficiente.</p>
+            <h1>Contribution Guide</h1>
+            <p>Help us make JiukBlocker even smarter and more efficient.</p>
         </header>
 
         <section class="content">
             <div class="card">
-                <h2><i data-lucide="help-circle"></i> Onde Começar?</h2>
-                <p>Seja você um desenvolvedor experiente ou alguém querendo apenas sugerir uma nova regra de bloqueio, seguir este guia facilita o processo.</p>
+                <h2><i data-lucide="help-circle"></i> Where to Start?</h2>
+                <p>Whether you're an experienced developer or someone just wanting to suggest a new blocking rule, following this guide makes the process easier.</p>
                 <ul>
-                    <li><strong>Dicionário de Filtros:</strong> Adicione novas palavras-chave de gatilho.</li>
-                    <li><strong>Suporte a Plataformas:</strong> Melhore o bloqueio em redes sociais específicas.</li>
-                    <li><strong>Interface:</strong> Melhore o menu da extensão e a UX.</li>
+                    <li><strong>Filter Dictionary:</strong> Add new trigger keywords.</li>
+                    <li><strong>Platform Support:</strong> Improve blocking on specific social networks.</li>
+                    <li><strong>Interface:</strong> Improve the extension menu and overall UX.</li>
                 </ul>
             </div>
 
             <div class="card">
-                <h2><i data-lucide="terminal"></i> Passos Técnicos</h2>
+                <h2><i data-lucide="terminal"></i> Technical Steps</h2>
                 <ol>
-                    <li>Faça um <strong>Fork</strong> do repositório no GitHub.</li>
-                    <li>Crie uma branch para sua funcionalidade: <code>git checkout -b feature/NovaFuncionalidade</code>.</li>
-                    <li>Implemente suas mudanças seguindo os padrões de código do projeto.</li>
-                    <li>Envie um <strong>Pull Request</strong> detalhando o que foi alterado.</li>
+                    <li><strong>Fork</strong> the repository on GitHub.</li>
+                    <li>Create a branch for your feature: <code>git checkout -b feature/NewFeature</code>.</li>
+                    <li>Implement your changes following the project's code standards.</li>
+                    <li>Send a <strong>Pull Request</strong> detailing what was changed.</li>
                 </ol>
             </div>
 
             <div class="card">
                 <h2><i data-lucide="code-2"></i> Adicionando um Novo Filtro</h2>
-                <p>Para adicionar um novo termo ao dicionário NSFW global:</p>
+                <p>To add a new term to the global NSFW dictionary:</p>
                 <ul>
-                    <li>Abra o arquivo <code>content/General/nsfw_keywords.js</code>.</li>
-                    <li>Adicione seu termo ao array exportado.</li>
-                    <li>Todas as integrações da extensão ganharão acesso a essa atualização instantaneamente!</li>
+                    <li>Open <code>content/General/nsfw_keywords.js</code>.</li>
+                    <li>Add your term to the exported array.</li>
+                    <li>All integration in the extension will gain access to this update instantly!</li>
                 </ul>
             </div>
 
             <div class="card">
-                <h2><i data-lucide="layout"></i> Expansão de Redes Sociais</h2>
-                <p>Quer adicionar suporte nativo a um novo site (ex: Pinterest)?</p>
+                <h2><i data-lucide="layout"></i> Platform Expansion</h2>
+                <p>Want to add native support for a new site (e.g., Pinterest)?</p>
                 <ul>
-                    <li>Crie um diretório em <code>content/Pinterest/</code>.</li>
-                    <li>Adicione a lógica em <code>content_pinterest.js</code> e os estilos em <code>styles_pinterest.css</code>.</li>
-                    <li>Registre o novo padrão de URL no <code>manifest.json</code>.</li>
+                    <li>Create a directory in <code>content/Pinterest/</code>.</li>
+                    <li>Add logic in <code>content_pinterest.js</code> and styles in <code>styles_pinterest.css</code>.</li>
+                    <li>Register the new URL pattern in <code>manifest.json</code>.</li>
                 </ul>
             </div>
         </section>
