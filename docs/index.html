@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JiukBlocker - Documentação</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <nav class="sidebar">
+        <a href="index.html" class="logo">
+            <i data-lucide="shield-check"></i>
+            <span>JiukBlocker</span>
+        </a>
+        <ul class="nav-links">
+            <li class="nav-item">
+                <a href="index.html" class="nav-link active">
+                    <i data-lucide="home"></i>
+                    <span>Início</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="contributing.html" class="nav-link">
+                    <i data-lucide="git-pull-request"></i>
+                    <span>Como Contribuir</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="support.html" class="nav-link">
+                    <i data-lucide="heart"></i>
+                    <span>Apoiar Projeto</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="license.html" class="nav-link">
+                    <i data-lucide="file-text"></i>
+                    <span>Licença de Uso</span>
+                </a>
+            </li>
+        </ul>
+        <div class="sidebar-footer">
+            <p style="font-size: 0.8rem; color: var(--text-muted); padding: 0 1rem;">© 2026 Jiuk</p>
+        </div>
+    </nav>
+
+    <main class="main">
+        <header class="header">
+            <h1>Bem-vindo ao JiukBlocker</h1>
+            <p>A extensão definitiva para uma navegação limpa, segura e ultra-veloz.</p>
+        </header>
+
+        <section class="content">
+            <div class="card">
+                <h2><i data-lucide="zap"></i> O que é o JiukBlocker?</h2>
+                <p>O <strong>JiukBlocker</strong> é uma extensão de navegador poderosa e altamente otimizada para o ecossistema Chromium, focada na filtragem contínua de conteúdos indesejados. Ele combina bloqueio de anúncios robusto com filtragem inteligente de conteúdo explícito (NSFW) usando análise dinâmica de DOM e um dicionário centralizado de heurísticas.</p>
+                <div class="alert alert-info">
+                    <i data-lucide="info"></i>
+                    <span>Foco em controle de conteúdo leve e cirurgicamente preciso, garantindo uma experiência de navegação discreta sem sacrificar o desempenho.</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2><i data-lucide="layers"></i> Como Funciona?</h2>
+                <p>Nossa mágica reside na combinação de interceptação passiva de rede e varredura visual reativa:</p>
+                <ul>
+                    <li><strong>Bloqueio de Rede Preventivo:</strong> Utiliza a API <code>declarativeNetRequest</code> para bloquear anúncios e rastreadores antes mesmo do carregamento.</li>
+                    <li><strong>Injeção Inteligente:</strong> Scripts específicos para plataformas como YouTube, Instagram, X (Twitter), TikTok e Reddit.</li>
+                    <li><strong>Escaneamento de DOM Otimizado:</strong> Monitoramento via <code>MutationObserver</code> para detectar novos conteúdos dinâmicos instantaneamente.</li>
+                    <li><strong>Ação Visual:</strong> Aplicação de filtros CSS como <code>backdrop-filter: blur</code> ou <code>display: none</code> em tempo real.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2><i data-lucide="layout"></i> Estrutura do Projeto</h2>
+                <p>O design é estritamente modular, facilitando a escalabilidade e manutenção:</p>
+                <ul>
+                    <li><code>/rules</code>: Regras de rede para anúncios e NSFW.</li>
+                    <li><code>/content</code>: Lógica de front-end para filtragem em sites específicos.</li>
+                    <li><code>/popup</code>: Interface do usuário moderna para controle total.</li>
+                    <li><code>/background</code>: O cérebro que gerencia estados e regras dinâmicas.</li>
+                </ul>
+            </div>
+        </section>
+
+        <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+            <a href="contributing.html" class="btn btn-primary">
+                Começar a Contribuir <i data-lucide="arrow-right"></i>
+            </a>
+            <a href="https://github.com/JiukOn/JiukBlocker" class="btn" style="border: 1px solid var(--border-color);">
+                GitHub <i data-lucide="github"></i>
+            </a>
+        </div>
+    </main>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
