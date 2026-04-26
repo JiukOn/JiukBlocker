@@ -302,17 +302,41 @@ ul#keyword-list li {
   padding: 6px 12px;
 }
 
-.kofi-btn {
-  display: block;
-  margin-top: 20px;
-  padding: 12px;
-  background-color: var(--kofi-bg);
-  color: white;
+.footer-links {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.footer-links a {
+  flex: 1;
+  padding: 10px 4px;
   text-align: center;
   text-decoration: none;
-  border-radius: var(--radius);
-  font-weight: 700;
-  box-shadow: 0 4px 12px rgba(255, 94, 91, 0.2);
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 11px;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.docs-btn {
+  background-color: var(--border-color);
+  color: var(--text-color);
+  border: 1px solid var(--input-border);
+}
+
+.docs-btn:hover {
+  background-color: var(--input-border);
+  transform: translateY(-1px);
+}
+
+.kofi-btn {
+  background-color: var(--kofi-bg);
+  color: white;
+  box-shadow: 0 4px 8px rgba(255, 94, 91, 0.15);
 }
 
 .kofi-btn:hover {
