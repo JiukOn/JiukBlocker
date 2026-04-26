@@ -40,6 +40,15 @@ function clearRegexCache() {
   regexCache.clear();
 }
 
+function checkUrl() {
+  if (blockShorts && (window.location.pathname.includes('/reels/') || window.location.pathname.includes('/reel/'))) {
+    // If it's a specific reel, maybe we just want to go home if we are in the Reels tab
+    if (window.location.pathname.startsWith('/reels/')) {
+        window.location.replace('https://www.instagram.com/');
+    }
+  }
+}
+
 function updateConfig() {
   chrome.storage.sync.get(['blockedKeywords', 'blockShorts', 'blockNSFW', 'nsfwLevel', 'blockAdsSpam']).then((result) => {
     const newKeywords    = (result.blockedKeywords || []).map(k => k.trim());
@@ -68,6 +77,8 @@ function updateConfig() {
 
     isInitialized = true;
 
+    checkUrl();
+
     if (shouldProcess) {
       resetDOM();
       processDOM();
@@ -76,7 +87,7 @@ function updateConfig() {
 }
 
 function resetDOM() {
-  document.querySelectorAll('article').forEach(el => {
+  document.querySelectorAll('article, div[role="menuitem"]').forEach(el => {
     delete el.dataset.jiukFiltered;
     el.style.display = '';
     el.classList.remove('jiuk-nsfw');
@@ -97,9 +108,12 @@ function processElement(el) {
     return;
   }
 
-  if (blockShorts && el.querySelector('a[href*="/reel/"]')) {
-    el.style.display = 'none';
-    return;
+  if (blockShorts) {
+    // Check for reel links or icons
+    if (el.querySelector('a[href*="/reel/"]') || el.querySelector('a[href*="/reels/"]')) {
+      el.style.display = 'none';
+      return;
+    }
   }
 
   const text = (el.innerText || '').trim();
@@ -120,11 +134,13 @@ function processElement(el) {
 }
 
 function processDOM() {
-  document.querySelectorAll('article').forEach(processElement);
+  // Articles are posts, but we also want to catch suggestions and Reels in grids
+  document.querySelectorAll('article, div[role="presentation"], ._ac7v').forEach(processElement);
 }
 
 let debounceTimer = null;
 const observer = new MutationObserver((mutations) => {
+  checkUrl();
   if (!mutations.some(m => m.addedNodes.length > 0)) return;
   clearTimeout(debounceTimer);
   debounceTimer = setTimeout(processDOM, 150);
@@ -140,6 +156,7 @@ chrome.storage.onChanged.addListener((changes, namespace) => {
 
 document.addEventListener('visibilitychange', () => {
   if (document.visibilityState === 'visible') {
+    checkUrl();
     processDOM();
   }
 });

@@ -48,6 +48,8 @@ const VIDEO_SELECTORS = [
   'grid-shelf-view-model',
   'ytm-shorts-lockup-view-model-v2',
   'ytm-shorts-lockup-view-model',
+  'ytd-rich-grid-slim-media',
+  'ytd-rich-section-renderer'
 ];
 
 function applyShortsState() {

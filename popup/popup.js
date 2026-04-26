@@ -1,96 +1,169 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const keywordInput    = document.getElementById('keyword-input');
-  const addBtn          = document.getElementById('add-btn');
-  const keywordList     = document.getElementById('keyword-list');
-  const shortsToggle    = document.getElementById('shorts-toggle');
-  const adsSpamToggle   = document.getElementById('ads-spam-toggle');
-  const nsfwToggle      = document.getElementById('nsfw-toggle');
-  const nsfwLevelSel    = document.getElementById('nsfw-level-select');
-  const nsfwLevelRow    = document.getElementById('nsfw-level-row');
+  // --- UI Elements ---
+  const elements = {
+    keywordInput:    document.getElementById('keyword-input'),
+    addBtn:          document.getElementById('add-btn'),
+    keywordList:     document.getElementById('keyword-list'),
+    shortsToggle:    document.getElementById('shorts-toggle'),
+    adsSpamToggle:   document.getElementById('ads-spam-toggle'),
+    nsfwToggle:      document.getElementById('nsfw-toggle'),
+    nsfwLevelSel:    document.getElementById('nsfw-level-select'),
+    nsfwLevelRow:    document.getElementById('nsfw-level-row'),
+    themeSelect:     document.getElementById('theme-select'),
+    unlockBtn:       document.getElementById('unlock-btn'),
+    lockIcon:        document.getElementById('lock-icon'),
+    pinSetupInput:   document.getElementById('pin-setup-input'),
+    savePinBtn:      document.getElementById('save-pin-btn'),
+    pinModal:        document.getElementById('pin-modal'),
+    pinModalInput:   document.getElementById('pin-modal-input'),
+    pinCancelBtn:    document.getElementById('pin-cancel-btn'),
+    pinSubmitBtn:    document.getElementById('pin-submit-btn')
+  };
 
-  function setNsfwBlockVisibility(isOn) {
-    nsfwLevelRow.style.display = isOn ? 'flex' : 'none';
+  let state = {
+    isLocked: false,
+    savedPin: '',
+    blockedKeywords: []
+  };
+
+  // --- UI Updates ---
+  function updateNSFWVisibility(isOn) {
+    elements.nsfwLevelRow.style.display = isOn ? 'flex' : 'none';
+  }
+
+  function updateTheme(theme) {
+    document.body.className = theme === 'light' ? '' : `theme-${theme}`;
+    elements.themeSelect.value = theme;
+  }
+
+  function renderKeywords() {
+    elements.keywordList.innerHTML = '';
+    state.blockedKeywords.forEach((keyword, index) => {
+      const li = document.createElement('li');
+      li.textContent = keyword;
+      
+      const deleteBtn = document.createElement('button');
+      deleteBtn.textContent = '×';
+      deleteBtn.className = 'delete-btn';
+      deleteBtn.disabled = state.isLocked;
+      deleteBtn.onclick = () => removeKeyword(index);
+      
+      li.appendChild(deleteBtn);
+      elements.keywordList.appendChild(li);
+    });
+  }
+
+  function updateLockUI(locked) {
+    state.isLocked = locked;
+    
+    // Toggle interactive elements
+    const inputs = [
+      elements.shortsToggle, elements.adsSpamToggle, elements.nsfwToggle,
+      elements.nsfwLevelSel, elements.keywordInput, elements.addBtn,
+      elements.pinSetupInput, elements.savePinBtn, elements.themeSelect
+    ];
+    
+    inputs.forEach(el => el.disabled = locked);
+    
+    // Update individual delete buttons
+    document.querySelectorAll('.delete-btn').forEach(btn => btn.disabled = locked);
+
+    // Update Header UI
+    elements.lockIcon.textContent = locked ? '🔒' : '🔓';
+    elements.unlockBtn.style.display = locked ? 'block' : 'none';
+  }
+
+  // --- Storage Operations ---
+  function saveToStorage(data, callback) {
+    chrome.storage.sync.set(data, callback);
   }
 
   function loadConfig() {
     chrome.storage.sync.get(
-      ['blockedKeywords', 'blockShorts', 'blockAdsSpam', 'blockNSFW', 'nsfwLevel'],
+      ['blockedKeywords', 'blockShorts', 'blockAdsSpam', 'blockNSFW', 'nsfwLevel', 'theme', 'pin'],
       (result) => {
-        const keywords = result.blockedKeywords || [];
-        renderList(keywords);
-        shortsToggle.checked    = result.blockShorts !== false;
-        adsSpamToggle.checked   = result.blockAdsSpam !== false;
-        nsfwToggle.checked      = result.blockNSFW   === true;
-        nsfwLevelSel.value      = result.nsfwLevel   || 'moderate';
-        setNsfwBlockVisibility(nsfwToggle.checked);
+        state.blockedKeywords = result.blockedKeywords || [];
+        state.savedPin = result.pin || '';
+        
+        renderKeywords();
+        elements.shortsToggle.checked  = result.blockShorts !== false;
+        elements.adsSpamToggle.checked = result.blockAdsSpam !== false;
+        elements.nsfwToggle.checked    = result.blockNSFW === true;
+        elements.nsfwLevelSel.value    = result.nsfwLevel || 'moderate';
+        
+        updateNSFWVisibility(elements.nsfwToggle.checked);
+        updateTheme(result.theme || 'light');
+        updateLockUI(!!state.savedPin);
       }
     );
   }
 
-  shortsToggle.addEventListener('change', (e) => {
-    chrome.storage.sync.set({ blockShorts: e.target.checked });
-  });
-
-  adsSpamToggle.addEventListener('change', (e) => {
-    chrome.storage.sync.set({ blockAdsSpam: e.target.checked });
-  });
-
-  nsfwToggle.addEventListener('change', (e) => {
-    chrome.storage.sync.set({ blockNSFW: e.target.checked });
-    setNsfwBlockVisibility(e.target.checked);
-  });
-
-  nsfwLevelSel.addEventListener('change', (e) => {
-    chrome.storage.sync.set({ nsfwLevel: e.target.value });
-  });
-
-  function renderList(keywords) {
-    keywordList.innerHTML = '';
-    keywords.forEach((keyword, index) => {
-      const li = document.createElement('li');
-      li.textContent = keyword;
-      const deleteBtn = document.createElement('button');
-      deleteBtn.textContent = '×';
-      deleteBtn.className = 'delete-btn';
-      deleteBtn.addEventListener('click', () => removeKeyword(index));
-      li.appendChild(deleteBtn);
-      keywordList.appendChild(li);
-    });
-  }
-
+  // --- Action Handlers ---
   function addKeyword() {
-    const newKeyword = keywordInput.value.trim();
-    if (!newKeyword) return;
+    if (state.isLocked) return;
+    const word = elements.keywordInput.value.trim();
+    if (!word || state.blockedKeywords.includes(word)) return;
 
-    chrome.storage.sync.get(['blockedKeywords'], (result) => {
-      const keywords = result.blockedKeywords || [];
-      if (!keywords.includes(newKeyword)) {
-        keywords.push(newKeyword);
-        chrome.storage.sync.set({ blockedKeywords: keywords }, () => {
-          keywordInput.value = '';
-          renderList(keywords);
-        });
-      } else {
-        keywordInput.value = '';
-      }
+    state.blockedKeywords.push(word);
+    saveToStorage({ blockedKeywords: state.blockedKeywords }, () => {
+      elements.keywordInput.value = '';
+      renderKeywords();
     });
   }
 
   function removeKeyword(index) {
-    chrome.storage.sync.get(['blockedKeywords'], (result) => {
-      const keywords = result.blockedKeywords || [];
-      keywords.splice(index, 1);
-      chrome.storage.sync.set({ blockedKeywords: keywords }, () => renderList(keywords));
+    if (state.isLocked) return;
+    state.blockedKeywords.splice(index, 1);
+    saveToStorage({ blockedKeywords: state.blockedKeywords }, renderKeywords);
+  }
+
+  function savePin() {
+    if (state.isLocked) return;
+    const newPin = elements.pinSetupInput.value.trim();
+    saveToStorage({ pin: newPin }, () => {
+      state.savedPin = newPin;
+      elements.pinSetupInput.value = '';
+      if (newPin) updateLockUI(true);
+      alert(newPin ? 'PIN saved. Settings locked.' : 'PIN removed. Settings unlocked.');
     });
   }
 
-  addBtn.addEventListener('click', addKeyword);
-
-  keywordInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-      addKeyword();
+  function tryUnlock() {
+    if (elements.pinModalInput.value === state.savedPin) {
+      updateLockUI(false);
+      elements.pinModal.classList.remove('active');
+      elements.pinModalInput.value = '';
+    } else {
+      alert('Incorrect PIN');
     }
+  }
+
+  // --- Event Listeners ---
+  elements.shortsToggle.addEventListener('change', (e) => saveToStorage({ blockShorts: e.target.checked }));
+  elements.adsSpamToggle.addEventListener('change', (e) => saveToStorage({ blockAdsSpam: e.target.checked }));
+  elements.nsfwToggle.addEventListener('change', (e) => {
+    saveToStorage({ blockNSFW: e.target.checked });
+    updateNSFWVisibility(e.target.checked);
+  });
+  elements.nsfwLevelSel.addEventListener('change', (e) => saveToStorage({ nsfwLevel: e.target.value }));
+  
+  elements.themeSelect.addEventListener('change', (e) => {
+    updateTheme(e.target.value);
+    saveToStorage({ theme: e.target.value });
   });
 
+  elements.addBtn.addEventListener('click', addKeyword);
+  elements.keywordInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') addKeyword(); });
+
+  elements.savePinBtn.addEventListener('click', savePin);
+  elements.unlockBtn.addEventListener('click', () => {
+    elements.pinModal.classList.add('active');
+    elements.pinModalInput.focus();
+  });
+  elements.pinCancelBtn.addEventListener('click', () => elements.pinModal.classList.remove('active'));
+  elements.pinSubmitBtn.addEventListener('click', tryUnlock);
+  elements.pinModalInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') tryUnlock(); });
+
+  // --- Init ---
   loadConfig();
 });

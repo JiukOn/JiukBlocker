@@ -1348,5 +1348,125 @@
         "xmlhttprequest"
       ]
     }
+  },
+  {
+    "id": 76,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": { "urlFilter": "||popads.net", "resourceTypes": ["main_frame", "sub_frame", "script"] }
+  },
+  {
+    "id": 77,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": { "urlFilter": "||adroll.com", "resourceTypes": ["script", "image"] }
+  },
+  {
+    "id": 78,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": { "urlFilter": "||onclickads.net", "resourceTypes": ["main_frame", "sub_frame", "script"] }
+  },
+  {
+    "id": 79,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": { "urlFilter": "||propellerads.com", "resourceTypes": ["script", "sub_frame"] }
+  },
+  {
+    "id": 80,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": { "urlFilter": "||zeropark.com", "resourceTypes": ["script", "sub_frame"] }
+  },
+  {
+    "id": 81,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": { "urlFilter": "||adcash.com", "resourceTypes": ["script", "sub_frame"] }
+  },
+  {
+    "id": 82,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": { "urlFilter": "||exo-os.com", "resourceTypes": ["script"] }
+  },
+  {
+    "id": 83,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": { "urlFilter": "||exoclick.com", "resourceTypes": ["script", "image"] }
+  },
+  {
+    "id": 84,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": { "urlFilter": "||juicyads.com", "resourceTypes": ["script", "image"] }
+  },
+  {
+    "id": 85,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": { "urlFilter": "||trafficjunky.net", "resourceTypes": ["script"] }
+  },
+  {
+    "id": 86,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": { "urlFilter": "||mgid.com", "resourceTypes": ["script", "image"] }
+  },
+  {
+    "id": 87,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": { "urlFilter": "||revcontent.com", "resourceTypes": ["script", "image"] }
+  },
+  {
+    "id": 88,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": { "urlFilter": "||mediavine.com", "resourceTypes": ["script"] }
+  },
+  {
+    "id": 89,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": { "urlFilter": "||adthrive.com", "resourceTypes": ["script"] }
+  },
+  {
+    "id": 90,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": { "urlFilter": "||media.net", "resourceTypes": ["script"] }
+  },
+  {
+    "id": 91,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": { "urlFilter": "||buysellads.com", "resourceTypes": ["script", "image"] }
+  },
+  {
+    "id": 92,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": { "urlFilter": "||carbonads.net", "resourceTypes": ["script", "image"] }
+  },
+  {
+    "id": 93,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": { "urlFilter": "||servedbyadbutler.com", "resourceTypes": ["script"] }
+  },
+  {
+    "id": 94,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": { "urlFilter": "||adzerk.net", "resourceTypes": ["script"] }
+  },
+  {
+    "id": 95,
+    "priority": 1,
+    "action": { "type": "block" },
+    "condition": { "urlFilter": "||tracking.com", "resourceTypes": ["script", "xmlhttprequest"] }
   }
 ]

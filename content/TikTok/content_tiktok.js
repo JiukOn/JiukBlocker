@@ -1,4 +1,5 @@
 let blockedKeywords = [];
+let blockShorts = true;
 let blockNSFW   = false;
 let nsfwLevel   = 'moderate';
 let blockAdsSpam = true;
@@ -39,9 +40,20 @@ function clearRegexCache() {
   regexCache.clear();
 }
 
+function checkUrl() {
+  if (blockShorts) {
+    // If we are on TikTok and want to block shorts, we basically block the site.
+    // We redirect to Google or a specific "blocked" page if we want, but Google is safer for distraction-free.
+    if (window.location.hostname.includes('tiktok.com')) {
+      window.location.replace('https://www.google.com/');
+    }
+  }
+}
+
 function updateConfig() {
-  chrome.storage.sync.get(['blockedKeywords', 'blockNSFW', 'nsfwLevel', 'blockAdsSpam']).then((result) => {
+  chrome.storage.sync.get(['blockedKeywords', 'blockShorts', 'blockNSFW', 'nsfwLevel', 'blockAdsSpam']).then((result) => {
     const newKeywords    = (result.blockedKeywords || []).map(k => k.trim());
+    const newBlockShorts = result.blockShorts !== false;
     const newBlockNSFW   = result.blockNSFW === true;
     const newNsfwLevel   = result.nsfwLevel || 'moderate';
     const newBlockAdsSpam = result.blockAdsSpam !== false;
@@ -50,16 +62,20 @@ function updateConfig() {
     
     const shouldProcess = !isInitialized || 
                           keywordsChanged || 
+                          newBlockShorts !== blockShorts ||
                           newBlockNSFW !== blockNSFW || 
                           newNsfwLevel !== nsfwLevel ||
                           newBlockAdsSpam !== blockAdsSpam;
 
     blockedKeywords = newKeywords;
+    blockShorts     = newBlockShorts;
     blockNSFW       = newBlockNSFW;
     nsfwLevel       = newNsfwLevel;
     blockAdsSpam    = newBlockAdsSpam;
 
     isInitialized = true;
+
+    checkUrl();
 
     if (shouldProcess) {
       resetDOM();
@@ -111,6 +127,7 @@ function processDOM() {
 
 let debounceTimer = null;
 const observer = new MutationObserver((mutations) => {
+  checkUrl();
   if (!mutations.some(m => m.addedNodes.length > 0)) return;
   clearTimeout(debounceTimer);
   debounceTimer = setTimeout(processDOM, 150);
@@ -119,13 +136,14 @@ const observer = new MutationObserver((mutations) => {
 chrome.storage.onChanged.addListener((changes, namespace) => {
   if (namespace !== 'sync') return;
   if (changes.blockedKeywords) clearRegexCache();
-  if (changes.blockedKeywords || changes.blockNSFW || changes.nsfwLevel || changes.blockAdsSpam) {
+  if (changes.blockedKeywords || changes.blockShorts || changes.blockNSFW || changes.nsfwLevel || changes.blockAdsSpam) {
     updateConfig();
   }
 });
 
 document.addEventListener('visibilitychange', () => {
   if (document.visibilityState === 'visible') {
+    checkUrl();
     processDOM();
   }
 });

@@ -64,9 +64,9 @@
                 <h2><i data-lucide="help-circle"></i> Where to Start?</h2>
                 <p>Whether you're an experienced developer or someone just wanting to suggest a new blocking rule, following this guide makes the process easier.</p>
                 <ul>
-                    <li><strong>Filter Dictionary:</strong> Add new trigger keywords.</li>
-                    <li><strong>Platform Support:</strong> Improve blocking on specific social networks.</li>
-                    <li><strong>Interface:</strong> Improve the extension menu and overall UX.</li>
+                    <li><strong>Filter Dictionary:</strong> Add new trigger keywords to detect distractions or NSFW content.</li>
+                    <li><strong>Platform Support:</strong> Improve blocking on specific social networks like TikTok, Instagram, or YouTube.</li>
+                    <li><strong>UI/UX:</strong> Help improve the popup interface, add new themes, or enhance animations.</li>
                 </ul>
             </div>
 
@@ -81,12 +81,22 @@
             </div>
 
             <div class="card">
-                <h2><i data-lucide="code-2"></i> Adicionando um Novo Filtro</h2>
+                <h2><i data-lucide="code-2"></i> Adding a New Filter</h2>
                 <p>To add a new term to the global NSFW dictionary:</p>
                 <ul>
                     <li>Open <code>content/General/nsfw_keywords.js</code>.</li>
-                    <li>Add your term to the exported array.</li>
-                    <li>All integration in the extension will gain access to this update instantly!</li>
+                    <li>Add your term (as a string or regex) to the exported array.</li>
+                    <li>The dictionary is shared across all platform integrations instantly.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2><i data-lucide="palette"></i> Theming System</h2>
+                <p>Want to add a new theme?</p>
+                <ul>
+                    <li>Open <code>popup/popup.css</code> and define your theme variables under a new class (e.g., <code>body.theme-custom</code>).</li>
+                    <li>Add the option to the theme selector in <code>popup/popup.html</code>.</li>
+                    <li>Ensure all UI components (buttons, cards, toggles) look consistent in your new theme.</li>
                 </ul>
             </div>
 
@@ -97,6 +107,7 @@
                     <li>Create a directory in <code>content/Pinterest/</code>.</li>
                     <li>Add logic in <code>content_pinterest.js</code> and styles in <code>styles_pinterest.css</code>.</li>
                     <li>Register the new URL pattern in <code>manifest.json</code>.</li>
+                    <li>Hook into the centralized configuration system to respect user toggles.</li>
                 </ul>
             </div>
         </section>

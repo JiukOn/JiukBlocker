@@ -7,7 +7,13 @@
   <link rel="stylesheet" href="popup.css">
 </head>
 <body>
-  <h1>JiukBlocker</h1>
+  <div class="lock-header">
+    <h1>JiukBlocker</h1>
+    <div class="lock-status" id="lock-status-container">
+      <span id="lock-icon">🔓</span>
+      <button id="unlock-btn" class="unlock-btn" style="display: none;">Unlock</button>
+    </div>
+  </div>
 
   <div class="toggle-container">
     <span class="toggle-label">Block Ads & Spam</span>
@@ -48,7 +54,40 @@
   </div>
   <ul id="keyword-list"></ul>
 
+  <h2>Parental Control</h2>
+  <div class="pin-setup-row">
+    <input type="password" id="pin-setup-input" placeholder="New PIN (empty to remove)" autocomplete="off">
+    <button id="save-pin-btn">Save</button>
+  </div>
+
+  <div class="settings-footer">
+    <div class="theme-selector">
+      <label for="theme-select" class="toggle-label">Theme</label>
+      <select id="theme-select">
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+        <option value="ocean">Ocean</option>
+        <option value="dracula">Dracula</option>
+        <option value="midnight">Midnight</option>
+        <option value="sunday">Sunday</option>
+      </select>
+    </div>
+  </div>
+
   <a href="https://ko-fi.com/jiuk" target="_blank" class="kofi-btn">☕ Support the Project</a>
+
+  <!-- PIN Modal -->
+  <div class="modal-overlay" id="pin-modal">
+    <div class="modal-content">
+      <h3>Enter PIN to Unlock</h3>
+      <input type="password" id="pin-modal-input" placeholder="Enter PIN">
+      <div class="modal-actions">
+        <button class="btn-cancel" id="pin-cancel-btn">Cancel</button>
+        <button class="btn-submit" id="pin-submit-btn">Unlock</button>
+      </div>
+    </div>
+  </div>
+
   <script src="popup.js"></script>
 </body>
 </html>
